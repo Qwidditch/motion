@@ -1,7 +1,24 @@
 {
-  "name": "my-qwik-library-name",
-  "version": "0.0.1",
+  "name": "@qwidditch/motion",
+  "version": "0.0.2",
   "description": "Create a reusable Qwik component library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Qwidditch/motion"
+  },
+  "author": {
+    "name": "Benjamin Rensch Vinterberg",
+    "email": "not.my.email@example.com",
+    "url": "https://github.com/benj924c"
+  },
+  "keywords": [
+    "qwik",
+    "animation",
+    "framer-motion",
+    "motion",
+    "motion-one"
+  ],
+  "license": "MIT",
   "main": "./lib/index.qwik.mjs",
   "qwik": "./lib/index.qwik.mjs",
   "types": "./lib-types/index.d.ts",
@@ -47,5 +64,8 @@
     "typescript": "5.0.4",
     "undici": "5.22.1",
     "vite": "4.3.9"
+  },
+  "dependencies": {
+    "motion": "^10.16.2"
   }
 }

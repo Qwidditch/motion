@@ -1,6 +1,3 @@
-import { Counter } from './components/counter/counter';
-import { Logo } from './components/logo/logo';
-
 export default () => {
   return (
     <>
@@ -9,8 +6,6 @@ export default () => {
         <title>Qwik Blank App</title>
       </head>
       <body>
-        <Logo />
-        <Counter />
       </body>
     </>
   );

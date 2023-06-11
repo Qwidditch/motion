@@ -1,7 +1,7 @@
 {
   "name": "@qwidditch/motion",
-  "version": "0.0.2",
-  "description": "Create a reusable Qwik component library",
+  "version": "0.1.0",
+  "description": "An animation library for Qwik",
   "repository": {
     "type": "git",
     "url": "https://github.com/Qwidditch/motion"

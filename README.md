@@ -1,47 +1,51 @@
-# Qwik Library ⚡️
-
-- [Qwik Docs](https://qwik.builder.io/)
-- [Discord](https://qwik.builder.io/chat)
-- [Qwik on GitHub](https://github.com/BuilderIO/qwik)
-- [@QwikDev](https://twitter.com/QwikDev)
-- [Vite](https://vitejs.dev/)
-- [Partytown](https://partytown.builder.io/)
-- [Mitosis](https://github.com/BuilderIO/mitosis)
-- [Builder.io](https://www.builder.io/)
-
+# Animation library for Qwik ⚡️
 ---
+## Introduction
 
-## Project Structure
+Qwidditch motion aims to be to Qwik, what framer motion is to react.
 
-Inside your project, you'll see the following directories and files:
+Currently far from feature parity and very much still under construction, this means potentially many bugs and is not ready for production.
+The API may change over time, but for the sake of simplicity aims for as natural a feel as framer motion, but may over time deviate from their appraoch.
 
-```
-├── public/
-│   └── ...
-└── src/
-    ├── components/
-    │   └── ...
-    └── index.ts
-```
-
-- `src/components`: Recommended directory for components.
-
-- `index.ts`: The entry point of your component library, make sure all the public components are exported from this file.
-
-## Development
-
-Development mode uses [Vite's development server](https://vitejs.dev/). For Qwik during development, the `dev` command will also server-side render (SSR) the output. The client-side development modules are loaded by the browser.
+You can try out Qwidditch motion by:
 
 ```
-npm run dev
+npm i @qwidditch/motion
 ```
 
-> Note: during dev mode, Vite will request many JS files, which does not represent a Qwik production build.
+## What it's capable of currently (version 0.1.0)
 
-## Production
-
-The production build should generate the production build of your component library in (./lib) and the typescript type definitions in (./lib-types).
+Using a similar API to framer motion, you can apply animations like so:
 
 ```
-npm run build
+<motion.div
+    animate={{ x: 100, rotate: 45 }}
+    options={{
+        duration: 0.5,
+        easing: 'ease-in-out',
+        repeat: Infinity,
+        direction: 'alternate',
+    }}
+>
+    Hello world
+</motion.div>
 ```
+
+
+## Where Qwidditch motion is headed
+
+In its current form you can apply an animation that will run, but not much more than that. In upcoming releases you should be able to declare an initial state, that will tell Qwidditch motion how an element will "enter" whereafter the normal animation will play.
+After that, an exit state will be implemented, so you can remove the elements from the dom in a more nice way than them just dissappearing.
+
+
+> Note: Keep in mind I am one guy working on this, I'm new to both Qwik and making NPM packages so my solutions might be both naive and noobish, but hopfully working.
+
+## Acknowledgements
+It's worth keeping in mind that in this endeavor that this project is quite literally standing on the shoulder of giants. Just like framer motion, it uses [Motion One](https://motion.dev/) under the hood and thus without it this project would not exist. Likewise without the beautiful implementation of Framer Motion, I wouldn't have thought to make this at all.
+Not having an animation library was one of the biggest deterrents for me to make the switch, so I'm making this to help myself and others who might be in a similar position.
+
+### Shoutouts
+I'd like to shoutout @thameus from the Builder.io discord server for letting me know that [Motion One](https://motion.dev/) even was a thing.
+I'd also like to make a MEGA shoutout to @absolutejam for making a very beatiful demonstration on how motion one could be implemented in a Qwik project and most importantly how to avoid grabbing elements with a queryselector. You can find the demonstration [here](https://stackblitz.com/edit/github-ksmwra-2nfrgz?file=src%2Froutes%2Findex.tsx). Many times I've looked at this for inspiration.
+
+Lastly thanks to anyone else who have participated in my thread about animations in Qwik in the Builder.io discord server.

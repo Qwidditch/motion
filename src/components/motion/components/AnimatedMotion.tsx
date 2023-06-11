@@ -1,14 +1,16 @@
 import { component$, HTMLAttributes, Slot, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { animate, MotionKeyframesDefinition, AnimationOptionsWithOverrides } from "motion";
+import { GetElement } from "./GetElement";
 
-export interface divProps extends HTMLAttributes<HTMLDivElement> {
+export interface AnimatedMotionProps extends HTMLAttributes<HTMLElement> {
   animate: MotionKeyframesDefinition
   options?: AnimationOptionsWithOverrides
+  element: keyof HTMLElementTagNameMap | "svg"
 }
 
 
-export const div = component$<divProps>(({ animate: animateProps, options, ...attributes }) => {
-  const ref = useSignal<HTMLDivElement>();
+export const AnimatedMotion = component$<AnimatedMotionProps>(({element, animate: animateProps, options, ...attributes }) => {
+  const ref = useSignal<Element>();
 
   useVisibleTask$(() => {
     if (!ref.value) return;
@@ -19,8 +21,8 @@ export const div = component$<divProps>(({ animate: animateProps, options, ...at
     )
   })
   return (
-    <div {...attributes} ref={ref}>
+    <GetElement element={element} ref={ref} props={attributes}>
       <Slot />
-    </div>
+    </GetElement>
   );
 })

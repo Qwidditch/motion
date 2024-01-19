@@ -1,15 +1,14 @@
-import { component$, HTMLAttributes, Slot, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, QwikIntrinsicElements, Slot, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { animate, MotionKeyframesDefinition, AnimationOptionsWithOverrides } from "motion";
-import { GetElement } from "./GetElement";
 
-export interface AnimatedMotionProps extends HTMLAttributes<HTMLElement> {
+export interface AnimatedMotionProps<C extends keyof QwikIntrinsicElements> {
   animate: MotionKeyframesDefinition
   options?: AnimationOptionsWithOverrides
-  element: keyof HTMLElementTagNameMap | "svg"
+  as: QwikIntrinsicElements[C]
 }
 
-
-export const AnimatedMotion = component$<AnimatedMotionProps>(({element, animate: animateProps, options, ...attributes }) => {
+export const AnimatedMotion = component$<AnimatedMotionProps<keyof QwikIntrinsicElements>>(({ animate: animateProps, options, as, ...props}) => {
+  const MotionElement = as
   const ref = useSignal<Element>();
 
   useVisibleTask$(() => {
@@ -20,9 +19,12 @@ export const AnimatedMotion = component$<AnimatedMotionProps>(({element, animate
       options
     )
   })
+
   return (
-    <GetElement element={element} ref={ref} props={attributes}>
+    // @ts-ignore
+    <MotionElement ref={ref} {...props}>
       <Slot />
-    </GetElement>
+    </MotionElement>
   );
 })
+
